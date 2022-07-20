@@ -2,31 +2,8 @@
 
 .navgradiant {
     background: rgb(23, 23, 23);
-    background: linear-gradient(
-        -45deg,
-        rgba(23, 23, 23, 1) 32%,
-        rgba(0, 0, 0, 1) 45%,
-        rgba(255, 255, 255, 1) 45%,
-        rgba(255, 255, 255, 1) 60%
-    );
 }
 
-.mix {
-    mix-blend-mode: difference;
-}
-
-@media screen and (min-width: 600px) {
-    .navgradiant {
-        background: rgb(0, 0, 0);
-        background: linear-gradient(
-            -45deg,
-            rgba(0, 0, 0, 1) 9%,
-            rgba(0, 0, 0, 1) 51%,
-            rgba(255, 255, 255, 1) 51%,
-            rgba(255, 255, 255, 1) 88%
-        );
-    }
-}
 
 .navbar-nav .nav-link {
     &::after {
@@ -41,14 +18,14 @@
         &::after {
             width: 100%;
             height: 3px;
-            background-color: $secondary;
+            background-color: $light;
         }
     }
     &.active {
         &::after {
             width: 100%;
             height: 3px;
-            background-color: $secondary;
+            background-color: $light;
         }
     }
 }
