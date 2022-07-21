@@ -23,7 +23,7 @@ class ProjectAvController extends AbstractController
     public function show(Project $project): Response
     {
         return $this->render('projectAv/show.html.twig', [
-            'project' => $project,
+             'project' => $project,
         ]);
     }
 }

@@ -17,7 +17,7 @@ class ProjectFixtures extends Fixture
         $this->slugify = $slugify;
     }
 
-    public const VALUE = 50;
+    public const VALUE = 49;
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
