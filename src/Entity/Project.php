@@ -2,7 +2,7 @@
 
 namespace App\Entity;
 
-use App\Repository\ProjectsRepository;
+use App\Repository\ProjectRepository;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,8 +10,8 @@ use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: ProjectsRepository::class)]
-class Projects
+#[ORM\Entity(repositoryClass: ProjectRepository::class)]
+class Project
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -52,6 +52,12 @@ class Projects
 
     #[ORM\OneToMany(mappedBy: 'projects', targetEntity: Category::class)]
     private Collection $category;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\Length(
+        max: 255,
+    )]
+    private ?string $slug;
 
     public function __construct()
     {
@@ -135,7 +141,7 @@ class Projects
     {
         if (!$this->category->contains($category)) {
             $this->category[] = $category;
-            $category->setProjects($this);
+            $category->setProject($this);
         }
 
         return $this;
@@ -145,10 +151,22 @@ class Projects
     {
         if ($this->category->removeElement($category)) {
             // set the owning side to null (unless already changed)
-            if ($category->getProjects() === $this) {
-                $category->setProjects(null);
+            if ($category->getProject() === $this) {
+                $category->setProject(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }
