@@ -33,6 +33,7 @@ Encore
      */
     .addEntry('app', './assets/app.js')
     .addStyleEntry('navbar', './assets/styles/navbar.scss')
+    .addStyleEntry('home', './assets/styles/home.scss')
     .addStyleEntry('footer', './assets/styles/footer.scss')
     .addStyleEntry('home', './assets/styles/home.scss')
 
