@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{# {% block stylesheets %}
+	{{ encore_entry_link_tags('homeAdmin') }}
+{% endblock %} #}
+
+{% block title %}Admin
+{% endblock %}
+
+{% block header %}
+	{% include 'admin/_navbarAdmin.html.twig' %}
+{% endblock %}
+{% block flash %}
+	{% include 'components/_flash.html.twig' %}
+{% endblock %}
+{% block footer %}{% endblock %}
