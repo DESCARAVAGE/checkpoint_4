@@ -40,21 +40,21 @@ class ProjectRepository extends ServiceEntityRepository
         }
     }
 
-    public function findAllPastEvents(DateTime $dateTime): array|false
+    public function findAllPastProjects(): array|false
     {
         return $this->createQueryBuilder('p')
             ->Where('p.date < :date_end')
-            ->setParameter('date_end', $dateTime->format('01/03/2022'))
+            ->setParameter('date_end', '2022-03-01')
             ->OrderBy('p.date', 'ASC')
             ->getQuery()
             ->getResult();
     }
 
-    public function findAllUpcomingEvents(DateTime $dateTime): array|false
+    public function findAllUpcomingProjects(): array|false
     {
         return $this->createQueryBuilder('p')
             ->Where('p.date > :date_start')
-            ->setParameter('date_start', $dateTime->format('d/m/Y 01/03/2022'))
+            ->setParameter('date_start', '2022-03-01')
             ->OrderBy('p.date', 'ASC')
             ->getQuery()
             ->getResult();

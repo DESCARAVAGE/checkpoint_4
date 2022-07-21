@@ -12,9 +12,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectApController extends AbstractController
 {
     #[Route('/projectAp', name: 'projectAp_')]
-    public function index(ProjectRepository $projectRepository, DateTime $dateTime): Response
+    public function index(ProjectRepository $projectRepository): Response
     {
-        $projects = $projectRepository->findAllUpcomingEvents($dateTime);
+        $projects = $projectRepository->findAllUpcomingProjects();
         return $this->render('projectAv/index.html.twig', [
             'projects' => $projects,
         ]);

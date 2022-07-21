@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Project;
 use App\Repository\ProjectRepository;
-use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -12,9 +11,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProjectAvController extends AbstractController
 {
     #[Route('/projectAv', name: 'projectAv_')]
-    public function index(ProjectRepository $projectRepository, DateTime $dateTime): Response
+    public function index(ProjectRepository $projectRepository): Response
     {
-        $projects = $projectRepository->findAllPastEvents($dateTime);
+        $projects = $projectRepository->findAllPastProjects();
         return $this->render('projectAv/index.html.twig', [
            'projects' => $projects,
         ]);

@@ -5,7 +5,7 @@ namespace App\DataFixtures;
 use DateTime;
 use Faker\Factory;
 use App\Entity\Project;
-use App\Services\Slugify;
+use App\Service\Slugify;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -17,7 +17,7 @@ class ProjectFixtures extends Fixture
         $this->slugify = $slugify;
     }
 
-    public const VALUE = 6;
+    public const VALUE = 50;
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create();
@@ -26,7 +26,7 @@ class ProjectFixtures extends Fixture
             $project = new Project();
             $project->setTitle($faker->words(2, true));
             $project->setDate($faker->dateTime());
-            // $project->setImage('clash-royale-esport-min.jpg');
+            $project->setImage('projectcycle.jpg');
             $project->setDescription($faker->sentence(50));
             $project->setSlug($this->slugify->generate($project->getTitle()));
             // $imageName = 'project' . $i . '.jpg';
