@@ -16,11 +16,11 @@
 	</div>
 	<div class="justify-content-center p-5">
 		<h2 class="border-bottom border-2 border-dark pb-2 ms-2 text-dark">Les différentes catégories</h2>
-		<div class="row">
+		<div class="row categories">
 			{% for category in categories %}
 				<div class="col-lg-6 col-md-6 py-2 ">
 					<div
-						class="card m-2 shadow-sm">
+						class="categoryCard{{ loop.index }} card m-2 shadow-sm">
 						{# <img src="{{ vich_uploader_asset(event) }}" alt="{{"photographie de " ~ event.title }}" class="imgCards card-img-top"> #}
 						<a href="{{}}">
 							<div class="card-body category{{ loop.index }}">
@@ -34,4 +34,4 @@
 			{% endfor %}
 		</div>
 	</div>
-</div>{% endblock %}
+{% endblock %}

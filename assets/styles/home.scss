@@ -1,11 +1,16 @@
 @import "variables.scss";
 
-.category1:hover {
-background-color: chocolate;
-transition:0.3s;
+
+
+.categoryCard1:hover {
+    background-color: blueviolet;
+    color: $light;
+    transition: 0.3s;
 }
 
-.category2:hover {
-    background-color: rgb(60, 210, 30);
+.categoryCard2:hover {
+    background-color: rgb(233, 209, 35);
+    color: $dark;
     transition: 0.3s;
-    }
+}
+

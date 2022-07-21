@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{# {% block stylesheets %}
+	{{ encore_entry_link_tags('projectsAp') }}
+{% endblock %} #}
+
+{% block title %}
+	{{ parent() }}
+	| Av WCS
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		{% for project in projects %}
+			{% include 'components/_card_projects.html.twig'  %}
+		{% endfor %}
+	</div>
+{% endblock %}

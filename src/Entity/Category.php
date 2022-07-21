@@ -37,8 +37,8 @@ class Category
     )]
     private string $catchPhrase;
 
-    #[ORM\ManyToOne(targetEntity: Projects::class, inversedBy: 'category')]
-    private Projects $projects;
+    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'category')]
+    private Project $project;
 
     public function getId(): ?int
     {
@@ -69,14 +69,14 @@ class Category
         return $this;
     }
 
-    public function getProjects(): ?Projects
+    public function getProject(): ?Project
     {
-        return $this->projects;
+        return $this->project;
     }
 
-    public function setProjects(?Projects $projects): self
+    public function setProject(?Project $project): self
     {
-        $this->projects = $projects;
+        $this->project = $project;
 
         return $this;
     }
