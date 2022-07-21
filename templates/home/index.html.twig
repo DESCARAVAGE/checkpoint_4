@@ -1,8 +1,8 @@
 {% extends 'base.html.twig' %}
 
-{# {% block stylesheets %}
+{% block stylesheets %}
 	{{ encore_entry_link_tags('home') }}
-{% endblock %} #}
+{% endblock %}
 
 {% block title %}
 	{{ parent() }}
@@ -12,7 +12,7 @@
 {% block body %}
 	<div class="p-4 text-center">
 		<h1 class="mb-5">Accueil</h1>
-		<p class="fs-6">Je vous inviter à découvrir mon avancer dans le domaine du développement web avant et après la Wild code school !! Cliquez sur les cards ci-dessous.</p>
+		<p class="fs-6">Je vous invite à découvrir mon avancer dans le domaine du développement web avant et après la Wild code school !! Cliquez sur les cards ci-dessous.</p>
 	</div>
 	<div class="justify-content-center p-5">
 		<h2 class="border-bottom border-2 border-dark pb-2 ms-2 text-dark">Les différentes catégories</h2>
@@ -22,11 +22,13 @@
 					<div
 						class="card m-2 shadow-sm">
 						{# <img src="{{ vich_uploader_asset(event) }}" alt="{{"photographie de " ~ event.title }}" class="imgCards card-img-top"> #}
-						<div class="card-body">
-							<h5 class="text-truncate card-title text-center">{{ category.name }}</h5>
-							<p class="text-truncate card-text text-center text-truncate">{{ category.catchPhrase }}</p>
-							{# <a href="{{ path('event_show', { slug: event.slug }) }}" class="btn btn-primary d-block mx-auto">Voir les projets</a> #}
-						</div>
+						<a href="{{}}">
+							<div class="card-body category{{ loop.index }}">
+								<h5 class="text-truncate card-title text-center">{{ category.name }}</h5>
+								<p class="text-truncate card-text text-center text-truncate">{{ category.catchPhrase }}</p>
+								{# <a href="{{ path('event_show', { slug: event.slug }) }}" class="btn btn-primary d-block mx-auto">Voir les projets</a> #}
+							</div>
+						</a>
 					</div>
 				</div>
 			{% endfor %}
