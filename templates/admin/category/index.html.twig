@@ -1,0 +1,35 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+    <h1 class='text-light'>Catégories</h1>
+
+    <table class="table align-middle">
+        <thead>
+            <tr class='text-light'>
+                <th>Nom</th>
+                <th>Phrase d'accroche</th>
+                <th class="d-flex justify-content-center">Actions</th>
+            </tr>
+        </thead>
+        <a class="btn btn-primary btn-lg m-2" href="{{ path('admin_category_new') }}">Ajouter<i class="bi bi-cloud-plus ms-2"></i></a></a>
+        <tbody>
+        {% for category in categories %}
+            <tr class="text-light">
+                <td>{{ category.name }}</td>
+                <td>{{ category.catchPhrase }}</td>
+                <td class="d-flex align-items-center justify-content-center">
+                    <a href="{{ path('admin_category_edit', {'id': category.id}) }}" class="btn btn-warning m-1">Éditer<i class="bi bi-pen ms-2"></i></a>
+                    {{ include('admin/category/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

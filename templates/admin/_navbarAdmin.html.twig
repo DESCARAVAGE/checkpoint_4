@@ -4,29 +4,29 @@
 
 <nav class="navgradiant navbar navbar-dark navbar-expand-lg">
 	<div class="container-fluid mx-4">
-		<a class="navbar-brand" href="{{path('home_index')}}">
+		{# <a class="navbar-brand" href="{{path('home_index')}}">
 			<img src="{{ asset('build/images/LogoSplitScreen.png') }}" class="rounded" alt="Logo Split Screen" width="150" height="75">
-		</a>
+		</a> #}
 		<button class="mix navbar-toggler ms-auto me-2 text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+		<div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
 			<ul class="navbar-nav mb-2 mb-lg-0 d-flex gap-3 align-items-end">
 				<li class="nav-item">
 					<a class="mix nav-link text-light" aria-current="page" href="{{ path('admin_home') }}">
 						Accueil
 					</a>
 				</li>
-				<li class="nav-item">
-					{# <a class=" mix nav-link text-light" href="{{ path('admin_event_index') }}">
-						Événements
-					</a> #}
+				{# <li class="nav-item">
+					<a class=" mix nav-link text-light" href="{{ path('admin_category_index') }}">
+						Catégories
+					</a> 
 				</li>
 				<li class="nav-item">
-					{# <a class="mix nav-link text-light" href="{{ path('admin_actuality_index') }}">
-						Actus
-					</a> #}
-				</li>
+					<a class="mix nav-link text-light" href="{{ path('admin_projects_index') }}">
+						Projets
+					</a>
+				</li> #}
 				<li class="nav-item">
 					{# <a class="mix nav-link text-light" href="{{ path('admin_member_index') }}">
 						Membres

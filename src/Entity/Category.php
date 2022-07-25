@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\CategoryRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -37,8 +39,38 @@ class Category
     )]
     private string $catchPhrase;
 
-    #[ORM\ManyToOne(targetEntity: Project::class, inversedBy: 'category')]
-    private Project $project;
+    #[ORM\OneToMany(targetEntity: Project::class, mappedBy: 'project')]
+    private Collection $project;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private string $link;
+
+    public function __construct()
+    {
+        $this->project = new ArrayCollection();
+    }
+    public function getProjects(): Collection
+    {
+        return $this->project;
+    }
+    public function addProject(Project $project): self
+    {
+        if (!$this->project->contains($project)) {
+            $this->project[] = $project;
+            $project->setCategory($this);
+        }
+        return $this;
+    }
+    public function removeProgram(Project $project): self
+    {
+        if ($this->projects->removeElement($project)) {
+            // set the owning side to null (unless already changed)
+            if ($project->getCategory() === $this) {
+                $project->setCategory(null);
+            }
+        }
+        return $this;
+    }
 
     public function getId(): ?int
     {
@@ -69,14 +101,14 @@ class Category
         return $this;
     }
 
-    public function getProject(): ?Project
+    public function getLink(): ?string
     {
-        return $this->project;
+        return $this->link;
     }
 
-    public function setProject(?Project $project): self
+    public function setLink(string $link): self
     {
-        $this->project = $project;
+        $this->link = $link;
 
         return $this;
     }

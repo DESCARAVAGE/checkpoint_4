@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{# {% block stylesheets %}
+	{{ encore_entry_link_tags('event') }}
+{% endblock %} #}
+
+{% block title %}Projet :
+	{{ project.title }}
+{% endblock %}
+
+{% block body %}
+	<a class="ms-5 d-flex gap-3 text-decoration-none" href="{{ path('projectAv_index') }}">
+		<i class="bi bi-arrow-left fs-1"></i>
+		<div class="d-flex align-self-center">
+			<p class="arrowT m-0 fs-5">Retour à la liste des projets</p>
+		</div>
+	</a>
+	<main class="container">
+		<div class="d-flex flex-column justify-content-center align-items-center mb-3">
+			<div class="d-flex align-items-center">
+				<i class="bi bi-cast fs-2 me-2 text-primary"></i>
+				<h1 class="text-light">
+					{{ project.title }}
+				</h1>
+				<i class="bi bi-projector-fill fs-2 ms-2 text-secondary"></i>
+			</div>
+			<small class="text-muted">
+				{{ project.date| date("d/m/Y")}}
+			</small>
+		</div>
+		<div>
+			<a class="w-100" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+				<div class="d-flex justify-content-center align-items-center offset-lg-3 col-lg-6">
+					{# <img src="{{ vich_uploader_asset(project) }}" class="w-100" alt="{{ project.title }}"> #}
+				</div>
+			</a>
+
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-fullscreen">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							{# <img src="{{ vich_uploader_asset(project) }}" class="w-100" alt="{{ project.title }}"> #}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="m-5">
+				<p class="text-light">{{ project.description|raw }}</p>
+			</div>
+			<div>
+				<a href="{{ project.url }}" target="blank" class="btn text-light d-flex justify-content-center">{{ project.url }}</a>
+			</div>
+		</div>
+	</main>
+{% endblock %}

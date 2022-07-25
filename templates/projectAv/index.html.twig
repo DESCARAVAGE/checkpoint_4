@@ -10,9 +10,15 @@
 {% endblock %}
 
 {% block body %}
-	<div class="row">
+	<a class="ms-5 d-flex text-decoration-none" href="{{ path('home_index') }}">
+		<i class="bi bi-arrow-left d-flex align-self-center text-primary fs-1"></i>
+		<div class="d-flex align-self-center">
+			<p class="arrowT ps-1 mt-2 fs-5 text-primary">Retour aux catégories</p>
+		</div>
+	</a>
+	<div class="row p-5">
 		{% for project in projects %}
-			{% include 'components/_card_projects.html.twig'  %}
+			{% include 'components/_card_projectAv.html.twig'  %}
 		{% endfor %}
 	</div>
 {% endblock %}

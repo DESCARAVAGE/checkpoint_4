@@ -1,0 +1,45 @@
+{% extends 'admin/baseAdmin.html.twig' %}
+
+{% block title %}Project index
+{% endblock %}
+
+{% block body %}
+	<h1 class='text-light'>Projets</h1>
+
+	<table class="table align-middle">
+		<thead>
+			<tr class='text-light'>
+
+				<th>Title</th>
+				<th>Description</th>
+				<th>Lien</th>
+				<th>Date</th>
+				<th>Phrase d'accroche</th>
+				<th class='d-flex justify-content-center'>Actions</th>
+			</tr>
+		</thead>
+		<a class="btn btn-primary btn-lg m-2" href="{{ path('admin_project_new') }}">Ajouter<i class="bi bi-cloud-plus ms-2"></i>
+		</a>
+	</a>
+	<tbody>
+		{% for project in projects %}
+			<tr class="text-light">
+
+				<td>{{ project.title }}</td>
+				<td>{{ project.description }}</td>
+				<td>{{ project.url }}</td>
+				<td>{{ project.date ? project.date|date('Y-m-d') : '' }}</td>
+				<td>{{ project.catchPhrase }}</td>
+				<td class="d-flex align-items-center justify-content-center ">
+					<a href="{{ path('admin_project_edit', {'id': project.id}) }}" class="btn btn-warning m-1">Éditer<i class="bi bi-pen ms-2"></i>
+					</a>
+					{{ include('admin/project/_delete_form.html.twig') }}
+				</td>
+			</tr>
+		{% else %}
+			<tr>
+				<td colspan="10">no records found</td>
+			</tr>
+		{% endfor %}
+	</tbody>
+</table>{% endblock %}

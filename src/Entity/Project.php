@@ -3,10 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
-use DateTimeImmutable;
 use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -42,27 +40,32 @@ class Project
         max: 255,
         maxMessage: 'Le lien ne doit pas dépasser {{ limit }} caractères'
     )]
-    private string $url;
+    private ?string $url;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private ?string $image;
 
     #[ORM\Column(type: 'date', nullable: true)]
-    private DateTimeInterface $date;
+    private ?DateTimeInterface $date;
 
-    #[ORM\OneToMany(mappedBy: 'projects', targetEntity: Category::class)]
-    private Collection $category;
+    #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'project')]
+    private Category $category;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
     #[Assert\Length(
         max: 255,
     )]
     private ?string $slug;
 
-    public function __construct()
-    {
-        $this->category = new ArrayCollection();
-    }
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Assert\Length(
+        max: 255,
+        maxMessage: 'Le lien ne doit pas dépasser {{ limit }} caractères'
+    )]
+    private string $link;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $catchPhrase;
 
     public function getId(): ?int
     {
@@ -117,44 +120,26 @@ class Project
         return $this;
     }
 
-    public function getDate(): DateTimeInterface
+    public function getDate(): ?DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(DateTimeInterface $date): self
+    public function setDate(?DateTimeInterface $date): self
     {
         $this->date = $date;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Category>
-     */
-    public function getCategory(): Collection
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
-    public function addCategory(Category $category): self
+    public function setCategory(?Category $category): self
     {
-        if (!$this->category->contains($category)) {
-            $this->category[] = $category;
-            $category->setProject($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCategory(Category $category): self
-    {
-        if ($this->category->removeElement($category)) {
-            // set the owning side to null (unless already changed)
-            if ($category->getProject() === $this) {
-                $category->setProject(null);
-            }
-        }
+        $this->category = $category;
 
         return $this;
     }
@@ -167,6 +152,30 @@ class Project
     public function setSlug(string $slug): self
     {
         $this->slug = $slug;
+
+        return $this;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    public function setLink(string $link): self
+    {
+        $this->link = $link;
+
+        return $this;
+    }
+
+    public function getCatchPhrase(): ?string
+    {
+        return $this->catchPhrase;
+    }
+
+    public function setCatchPhrase(string $catchPhrase): self
+    {
+        $this->catchPhrase = $catchPhrase;
 
         return $this;
     }

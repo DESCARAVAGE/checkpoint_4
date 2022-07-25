@@ -8,9 +8,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[Route('/projectAv', name: 'projectAv_')]
 class ProjectAvController extends AbstractController
 {
-    #[Route('/projectAv', name: 'projectAv_')]
+    #[Route('/', name: 'index')]
     public function index(ProjectRepository $projectRepository): Response
     {
         $projects = $projectRepository->findAllPastProjects();
